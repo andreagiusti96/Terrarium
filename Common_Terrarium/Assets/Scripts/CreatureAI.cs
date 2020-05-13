@@ -35,7 +35,7 @@ namespace Assets.Scripts
             var food = creature.Sensor.SensePlants(creature);
             Vector3 closestFood = Vector3.zero;
             float bestDistance = Vector3.Distance(closestFood, transform.position);
-            foreach(var foodPiece in food)
+            foreach (var foodPiece in food)
             {
                 if (Vector3.Distance(foodPiece.transform.position, transform.position) < bestDistance)
                 {
@@ -47,7 +47,11 @@ namespace Assets.Scripts
             {
                 Debug.DrawLine(transform.position, closestFood, Color.red);
                 creature.Move(closestFood - transform.position, 1f);
+            } else
+            {
+                creature.Move(new Vector3(UnityEngine.Random.Range(0f,1f),0,UnityEngine.Random.Range(0f,1f)), 0.2f);
             }
+
         }
 
         /// <summary>
@@ -59,6 +63,9 @@ namespace Assets.Scripts
         public virtual void OnAccessibleFood(GameObject food)
         {
             creature.Eat(food);
+            if (creature.Energy > 0.2 * creature.MaxEnergy && UnityEngine.Random.Range(0,1)<0.1f) creature.Reproduce();
         }
+
+
     }
 }
