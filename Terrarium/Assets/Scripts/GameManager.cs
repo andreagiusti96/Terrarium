@@ -120,7 +120,7 @@ namespace Assets.Scripts
                     //float angle = (k * nIndividualsPerSpecies + i) * 360f / n;
                     float angle = (nIndividualsPerSpecies + i) * 360f / n;
                     Vector3 position = spawnAreas[k].transform.position + Quaternion.Euler(0, angle, 0f) * Vector3.forward * 50;
-                    position.y = 15f;
+                    position.y = 5f;
                     Instantiate(species[k], position, new Quaternion(0, angle, 0, 0));
                 }
             }
