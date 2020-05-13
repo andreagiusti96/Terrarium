@@ -35,7 +35,7 @@ namespace Assets.Scripts
             var food = creature.Sensor.SensePlants(creature);
             Vector3 closestFood = Vector3.zero;
             float bestDistance = Vector3.Distance(closestFood, transform.position);
-            foreach(var foodPiece in food)
+            foreach (var foodPiece in food)
             {
                 if (Vector3.Distance(foodPiece.transform.position, transform.position) < bestDistance)
                 {
@@ -48,6 +48,28 @@ namespace Assets.Scripts
                 Debug.DrawLine(transform.position, closestFood, Color.red);
                 creature.Move(closestFood - transform.position, 1f);
             }
+            //Vector3 dir = new Vector3(0.1f, 0f, 0.2f);
+            //creature.Move(dir, 1f);
+        }
+
+        private (GameObject, bool) FindFood()
+        {
+            List<GameObject> food = creature.Sensor.SensePlants(creature);
+            Vector3 closestFood = Vector3.zero;
+            float bestDistance = Vector3.Distance(closestFood, transform.position);
+            GameObject closestFoodObj = new GameObject("empty");
+            if (food.Count == 0)
+                return ((closestFoodObj, false));
+            foreach (var foodPiece in food)
+            {
+                if (Vector3.Distance(foodPiece.transform.position, transform.position) < bestDistance)
+                {
+                    bestDistance = Vector3.Distance(foodPiece.transform.position, transform.position);
+                    closestFood = foodPiece.transform.position;
+                    closestFoodObj = foodPiece;
+                }
+            }
+            return (closestFoodObj, true);
         }
 
         /// <summary>
@@ -60,5 +82,7 @@ namespace Assets.Scripts
         {
             creature.Eat(food);
         }
+
+
     }
 }
