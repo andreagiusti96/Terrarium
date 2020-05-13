@@ -395,7 +395,7 @@ PrefabInstance:
     - target: {fileID: 7919224150207797045, guid: 024cec824cfa35944975048d9ddf9829,
         type: 3}
       propertyPath: nIndividualsPerSpecies
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 024cec824cfa35944975048d9ddf9829, type: 3}

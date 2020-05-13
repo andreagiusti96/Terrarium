@@ -64,6 +64,10 @@ public class Creature : MonoBehaviour
     /// </summary>
     public float MaxEnergy { get; set; }
 
+    /// <summary>
+    /// The generation of the creature.
+    /// </summary>
+    public int Generation { get; set; }
 
     /// ----- ATTRIBUTES
 
@@ -94,7 +98,7 @@ public class Creature : MonoBehaviour
             MaxEnergy = initialMaxEnergy;
             Size = initialSize;
             Sensor = new CircularSensor(initialSensingRadius);
-            Energy = MaxEnergy;
+            Energy = MaxEnergy * 0.5f;
         }
         else
         {
@@ -125,11 +129,12 @@ public class Creature : MonoBehaviour
         direction.y = 0;
         Vector3 speedVector= direction.normalized * speed * MaxSpeed;
         transform.position += speedVector * Time.deltaTime;
-        Energy -= EnergyManager.MoveCost(this, speed * MaxSpeed);
 
         // Rotate models
         Quaternion rotation = Quaternion.LookRotation(-direction, Vector3.up);
         transform.rotation = rotation;
+
+        Energy -= EnergyManager.MoveCost(this, speed * MaxSpeed);
     }
 
     /// <summary>
@@ -151,7 +156,8 @@ public class Creature : MonoBehaviour
     /// </summary>
     public void Reproduce()
     {
-        if (Energy <= EnergyManager.ReproductionCost(this))
+        float energyCost = EnergyManager.ReproductionCost(this);
+        if (Energy <= energyCost)
             return;
         //Instantiate the baby
         Creature baby = Instantiate<Creature>(this, getClosestFreePoint(transform.position),transform.rotation);
@@ -159,10 +165,11 @@ public class Creature : MonoBehaviour
         //Modify its characteristics
         this.Reproducer.CreateBaby(this,ref baby);
         // The parent loses energy and gives it to the child
-        baby.Energy = EnergyManager.ReproductionCost(this);
-        Energy -= EnergyManager.ReproductionCost(this);
+        baby.Energy = energyCost;
 
-        Debug.Log("new baby size=" + baby.Size + " speed=" + baby.MaxSpeed+ " sensing="+baby.Sensor.SensingRadius);
+        Energy -= energyCost;
+
+        Debug.Log("new baby size=" + baby.Size + " speed=" + baby.MaxSpeed+ " sensing="+baby.Sensor.SensingRadius + " energy=" + baby.Energy);
     }
 
     Vector3 getClosestFreePoint(Vector3 point)

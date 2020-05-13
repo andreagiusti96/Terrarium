@@ -10,7 +10,7 @@ namespace Assets.Scripts.CreatureBehaviour
     {
         System.Random rand = new System.Random();
 
-        float mutationFactor = 0.1f;
+        float mutationFactor = 0.2f;
 
         public void CreateBaby(Creature parent, ref Creature baby)
         {
@@ -23,6 +23,7 @@ namespace Assets.Scripts.CreatureBehaviour
             baby.MaxSpeed = parent.MaxSpeed * (1 - mutationFactor / 2f + (float)rand.NextDouble() * mutationFactor);
             baby.Sensor = new CircularSensor(parent.Sensor.SensingRadius * (1 - mutationFactor / 2f + (float)rand.NextDouble() * mutationFactor));
             baby.MaxEnergy = parent.MaxEnergy;
+            baby.Generation = parent.Generation + 1;
         }
     }
 }

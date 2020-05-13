@@ -15,7 +15,7 @@ namespace Assets.Scripts
     {
         private Creature creature;
 
-        float[,] exploarationMap;
+        float[,] exploarationMap; // range [0,1] 0= just visited, 1= never visited
 
         float worldMin = -200;
         float worldMax = 600;
@@ -59,13 +59,14 @@ namespace Assets.Scripts
 
             creature.Move(dir, speed);
 
+
             // Debug.Log("dir=" + dir + " speed=" +speed);
         }
 
         public override void OnAccessibleFood(GameObject food)
         {
             creature.Eat(food);
-            if (creature.Energy > 0.2 * creature.MaxEnergy && UnityEngine.Random.Range(0,1)<0.1f) creature.Reproduce();
+            if (UnityEngine.Random.Range(0, creature.MaxEnergy) < creature.Energy) creature.Reproduce();
         }
 
         void initExplorationMap()
@@ -90,7 +91,9 @@ namespace Assets.Scripts
             {
                 for (int j = 0; j < max; j++)
                 {
-                    if(Vector3.Distance( cellPosition(i,j), transform.position) < creature.Sensor.SensingRadius)
+                    exploarationMap[i, j] = exploarationMap[i, j] + (1- exploarationMap[i, j]) * 0.004f;
+
+                    if (Vector3.Distance( cellPosition(i,j), transform.position) < creature.Sensor.SensingRadius)
                     {
                         exploarationMap[i, j] = 0;
                     }
@@ -106,9 +109,14 @@ namespace Assets.Scripts
             {
                 for (int j = 0; j < max; j++)
                 {
-                    if(exploarationMap[i,j] < 0.5)
+                    if(exploarationMap[i,j] < 0.2)
                     {
                         Gizmos.color = Color.green;
+                    }
+
+                    else if (exploarationMap[i, j] < 0.8)
+                    {
+                        Gizmos.color = Color.yellow;
                     }
                     else
                     {
@@ -152,7 +160,6 @@ namespace Assets.Scripts
         {
             Gizmos.DrawWireSphere(transform.position, creature.Sensor.SensingRadius);
             //drawExplorationMap();
-
         }
 
 

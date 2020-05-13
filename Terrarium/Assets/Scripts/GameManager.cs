@@ -16,8 +16,14 @@ namespace Assets.Scripts
         public GameObject[] spawnAreas;
         public int nIndividualsPerSpecies;
 
-        public int nHerbioures;
-        public int nCarnivore;
+        // DEBUG
+        int nHerbioures;
+        int nCarnivore;
+        float avgSize;
+        float avgSpeed;
+        float avgSensing;
+        float avgGeneration;
+        float avgEnergy;
 
         public void Awake()
         {
@@ -32,12 +38,24 @@ namespace Assets.Scripts
             nCarnivore = carnivores.Length;
             nHerbioures = herbivores.Length;
 
+            avgSensing = 0;
+            avgSize = 0;
+            avgSpeed = 0;
+            avgGeneration = 0;
+            avgEnergy = 0;
+
             //satisfy the herbivores
             foreach (var animal in herbivores)
             {
                 Creature c = animal.GetComponent<Creature>();
                 List<GameObject> animalFood;
-                
+
+                avgSensing += c.Sensor.SensingRadius;
+                avgSize += c.Size;
+                avgSpeed += c.MaxSpeed;
+                avgGeneration += c.Generation;
+                avgEnergy += c.Energy;
+
                 // Herbivores eat plants
                 animalFood = c.Sensor.SensePlants(c);
 
@@ -60,6 +78,13 @@ namespace Assets.Scripts
                 }
 
             }
+
+            avgSensing = avgSensing / (float)nHerbioures;
+            avgEnergy = avgEnergy / (float)nHerbioures;
+            avgSize = avgSize / (float)nHerbioures;
+            avgSpeed = avgSpeed / (float)nHerbioures;
+            avgGeneration = ((float)avgGeneration) / (float)nHerbioures;
+
             //same with carnivores
             foreach (var animal in carnivores)
             {
@@ -87,7 +112,6 @@ namespace Assets.Scripts
                     animal.GetComponent<CreatureAI>().OnAccessibleFood(closestFood);
                     Debug.Log($"Calling the eating method !");
                 }
-
             }
         }
 
