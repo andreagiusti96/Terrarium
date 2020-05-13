@@ -27,7 +27,6 @@ namespace Assets.Scripts
 
         public void Start()
         {
-            Debug.Log($"Creature AI is ready");
             creature = GetComponent<Creature>();
 
             worldSize = worldMax - worldMin;
@@ -55,12 +54,12 @@ namespace Assets.Scripts
             {
                 // cannot see any food, explore
                 dir = unexploredDirection(creature.Sensor.SensingRadius * 2);
-                speed = 0.5f;
+                speed = 1f;
             }
 
             creature.Move(dir, speed);
 
-            Debug.Log("dir=" + dir + " speed=" +speed);
+            // Debug.Log("dir=" + dir + " speed=" +speed);
         }
 
         public override void OnAccessibleFood(GameObject food)
@@ -122,8 +121,8 @@ namespace Assets.Scripts
 
         Vector3 unexploredDirection(float explorationRadius)
         {
-            Vector3 dir = new Vector3(rand.Next(-1, 1), 0, rand.Next(-1, 1));
-            dir = dir * 0.1f;
+            Vector3 dir = new Vector3(rand.Next(-10, 10), 0, rand.Next(-10, 10));
+            dir = dir * 0.01f;
             int max = (int)(worldSize / resolution) - 1;
 
             for (int i = 0; i < max; i++)
@@ -152,7 +151,7 @@ namespace Assets.Scripts
         private void OnDrawGizmos()
         {
             Gizmos.DrawWireSphere(transform.position, creature.Sensor.SensingRadius);
-            drawExplorationMap();
+            //drawExplorationMap();
 
         }
 

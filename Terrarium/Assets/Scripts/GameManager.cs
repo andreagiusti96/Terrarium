@@ -16,6 +16,9 @@ namespace Assets.Scripts
         public GameObject[] spawnAreas;
         public int nIndividualsPerSpecies;
 
+        public int nHerbioures;
+        public int nCarnivore;
+
         public void Awake()
         {
             SpawnCreatures();
@@ -23,8 +26,14 @@ namespace Assets.Scripts
 
         public void Update()
         {
+            GameObject[] herbivores = GameObject.FindGameObjectsWithTag("herbivore");
+            GameObject[] carnivores = GameObject.FindGameObjectsWithTag("carnivore");
+
+            nCarnivore = carnivores.Length;
+            nHerbioures = herbivores.Length;
+
             //satisfy the herbivores
-            foreach(var animal in GameObject.FindGameObjectsWithTag("herbivore"))
+            foreach (var animal in herbivores)
             {
                 Creature c = animal.GetComponent<Creature>();
                 List<GameObject> animalFood;
@@ -47,12 +56,12 @@ namespace Assets.Scripts
                 if (closestFood != null)
                 {
                     animal.GetComponent<CreatureAI>().OnAccessibleFood(closestFood);
-                    Debug.Log($"Calling the eating method !");
+                    // Debug.Log($"Calling the eating method !");
                 }
 
             }
             //same with carnivores
-            foreach (var animal in GameObject.FindGameObjectsWithTag("carnivore"))
+            foreach (var animal in carnivores)
             {
                 Creature c = animal.GetComponent<Creature>();
                 List<GameObject> animalFood;

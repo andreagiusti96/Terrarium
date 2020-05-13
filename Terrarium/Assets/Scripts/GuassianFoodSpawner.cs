@@ -11,8 +11,8 @@ namespace Assets.Scripts
     {
         private float xMin, xMax, zMin, zMax;
         private float time;
-        public float nr_guassians = 10;
-        public float std = 20;
+        public float nr_guassians = 20;
+        public float std = 40;
         private List<(float, float)> centers;
         public GuassianFoodSpawner(Vector3 position, float variance)
         {
@@ -35,7 +35,7 @@ namespace Assets.Scripts
         public Vector3 SpawnFood(float deltaTime, GameObject[] otherPlants)
         {
             time += deltaTime;
-            if (time > 1)
+            if (time > 0.5)
             {
                 time = 0;
 

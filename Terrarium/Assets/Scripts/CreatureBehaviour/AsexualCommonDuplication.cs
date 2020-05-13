@@ -8,16 +8,20 @@ namespace Assets.Scripts.CreatureBehaviour
 {
     class AsexualCommonDuplication : IReproduction
     {
-        public void CreateBaby(Creature parent, Creature baby)
+        System.Random rand = new System.Random();
+
+        float mutationFactor = 0.1f;
+
+        public void CreateBaby(Creature parent, ref Creature baby)
         {
             /*
              * This is a demo of how you may finetune your newborn
              * As you may, see mutation happens here !
              */
-            baby.Size = parent.Size;
-            baby.MaxSpeed = parent.MaxSpeed;
             baby.CreatureRegime = parent.CreatureRegime;
-            baby.Sensor = new CircularSensor(parent.Sensor.SensingRadius);
+            baby.Size = parent.Size * ( 1 - mutationFactor/2f + (float)rand.NextDouble() * mutationFactor);
+            baby.MaxSpeed = parent.MaxSpeed * (1 - mutationFactor / 2f + (float)rand.NextDouble() * mutationFactor);
+            baby.Sensor = new CircularSensor(parent.Sensor.SensingRadius * (1 - mutationFactor / 2f + (float)rand.NextDouble() * mutationFactor));
             baby.MaxEnergy = parent.MaxEnergy;
         }
     }
