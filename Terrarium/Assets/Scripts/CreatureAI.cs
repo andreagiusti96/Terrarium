@@ -13,6 +13,9 @@ namespace Assets.Scripts
     /// </summary>
     public class CreatureAI : MonoBehaviour
     {
+        public string specieName;
+        public int specieID;
+
         /// <summary>
         /// This function is called when your creature is within an acceptable
         /// range to eat some food, adapted to your regime of course.
@@ -20,6 +23,10 @@ namespace Assets.Scripts
         /// </summary>
         /// <param name="food"></param>
         public virtual void OnAccessibleFood(GameObject food)
+        {
+        }
+
+        public virtual void updateStats()
         {
         }
     }

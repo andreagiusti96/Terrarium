@@ -27,7 +27,7 @@ namespace Assets.Scripts.CreatureBehaviour
         {
             if (regime == Creature.Regime.CARNIVORE)
             {
-                return 2*food.GetComponent<Creature>().Size;
+                return 200 * food.GetComponent<Creature>().Size;
             } else
             {
                 return 200;

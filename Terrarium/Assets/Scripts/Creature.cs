@@ -99,7 +99,7 @@ public class Creature : MonoBehaviour
             MaxEnergy = initialMaxEnergy;
             Size = initialSize;
             Sensor = new CircularSensor(initialSensingRadius);
-            Energy = MaxEnergy * 0.5f;
+            Energy = MaxEnergy;
         }
         else
         {

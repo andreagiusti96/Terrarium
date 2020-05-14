@@ -76,7 +76,6 @@ namespace Assets.Scripts
                     animal.GetComponent<CreatureAI>().OnAccessibleFood(closestFood);
                     // Debug.Log($"Calling the eating method !");
                 }
-
             }
 
             avgSensing = avgSensing / (float)nHerbioures;
@@ -113,6 +112,11 @@ namespace Assets.Scripts
                     Debug.Log($"Calling the eating method !");
                 }
             }
+
+            foreach(CreatureAI specie in species)
+            {
+                specie.updateStats();
+            }
         }
 
         // Reset for ml agents
@@ -144,8 +148,10 @@ namespace Assets.Scripts
         {
             //int n = species.Length * nIndividualsPerSpecies;
             int n = nIndividualsPerSpecies;
+
             for (int k = 0; k < species.Length; k++)
             {
+                species[k].specieID = k;
                 if (k == 2) n = 8;  //less predators than preys
                 for (int i = 0; i < n; i++)
                 {

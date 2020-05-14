@@ -28,6 +28,14 @@ namespace Assets.Scripts
 
         System.Random rand;
 
+        static int nOfSpeciemens;
+
+        static float avgSize;
+        static float avgSpeed;
+        static float avgSensing;
+        static float avgGeneration;
+        static float avgEnergy;
+
         public void Start()
         {
             Debug.Log($"Creature AI is ready");
@@ -56,12 +64,12 @@ namespace Assets.Scripts
             if (food.Count > 0 && creature.Energy < creature.MaxEnergy * 0.8)
             {
                 // can see food, go and take it
-                Debug.Log("Fox has seen food");
+                //Debug.Log("Fox has seen food");
                 dir = (getClosest(food).transform.position - transform.position).normalized;
             }
             else if (ComeHerePos != Vector3.zero)
 			{
-                Debug.Log("Following friends");
+                //Debug.Log("Following friends");
                 dir = (ComeHerePos - transform.position).normalized;
             }
             else
@@ -82,7 +90,7 @@ namespace Assets.Scripts
             }
             creature.Move(dir, speed);
 
-            Debug.Log("dir=" + dir + " speed=" + speed);
+            // Debug.Log("dir=" + dir + " speed=" + speed);
         }
 
         public override void OnAccessibleFood(GameObject food)
@@ -114,6 +122,8 @@ namespace Assets.Scripts
             {
                 for (int j = 0; j < max; j++)
                 {
+                    exploarationMap[i, j] = exploarationMap[i, j] + (1 - exploarationMap[i, j]) * 0.004f;
+
                     if (Vector3.Distance(cellPosition(i, j), transform.position) < creature.Sensor.SensingRadius)
                     {
                         exploarationMap[i, j] = 0;
@@ -211,6 +221,41 @@ namespace Assets.Scripts
             }
             if (found) return friends[j].transform.position;
             else return Vector3.zero;
+        }
+
+        public override void updateStats()
+        {
+            List<GameObject> agents = GameObject.FindGameObjectsWithTag("carnivore").ToList();
+            agents.AddRange(GameObject.FindGameObjectsWithTag("herbivore").ToList());
+
+            agents = agents.FindAll(c => c.GetComponent<CreatureAI>().specieID == specieID);
+
+            nOfSpeciemens = agents.Count;
+
+            avgSensing = 0;
+            avgSize = 0;
+            avgSpeed = 0;
+            avgGeneration = 0;
+            avgEnergy = 0;
+
+            foreach (GameObject agent in agents)
+            {
+                Creature c = agent.GetComponent<Creature>();
+
+                avgSensing += c.Sensor.SensingRadius;
+                avgSize += c.Size;
+                avgSpeed += c.MaxSpeed;
+                avgGeneration += c.Generation;
+                avgEnergy += c.Energy;
+            }
+
+            avgSensing = avgSensing / (float)nOfSpeciemens;
+            avgEnergy = avgEnergy / (float)nOfSpeciemens;
+            avgSize = avgSize / (float)nOfSpeciemens;
+            avgSpeed = avgSpeed / (float)nOfSpeciemens;
+            avgGeneration = ((float)avgGeneration) / (float)nOfSpeciemens;
+
+            Debug.Log(specieName +" "+ nOfSpeciemens + " avgSize=" + avgSize + " avgSensing=" + avgSensing + " avgSpeed=" + avgSpeed + " avgGeneration=" + avgGeneration);
         }
     }
 }

@@ -58,6 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70bd1b9f6a3aa4125bad23475df5c2b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  specieName: Cow
+  specieID: 1
 --- !u!1001 &6966341860444957206
 PrefabInstance:
   m_ObjectHideFlags: 0

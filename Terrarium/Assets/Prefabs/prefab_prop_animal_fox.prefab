@@ -76,10 +76,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8581c345dce24bcdbcca5cb0d76e590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSize: 7
+  initialSize: 5
   initialRegime: 1
   initialMaxEnergy: 10000
-  initialMaxSpeed: 12
+  initialMaxSpeed: 20
   initialSensingRadius: 100
 --- !u!114 &-8152262030657091210
 MonoBehaviour:
@@ -90,9 +90,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1698060286047908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e48a48ed6c1d149afbe8e25d0b2c23f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 71c2550aebc0e473aad97c7f176acdb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  specieName: Fox
+  specieID: 1
 --- !u!1 &1930758515862692
 GameObject:
   m_ObjectHideFlags: 0

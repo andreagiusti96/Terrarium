@@ -41,6 +41,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a77e5269ef563414a94d3906ab37273c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  specieName: Chicken
+  specieID: 0
 --- !u!114 &6965390122154162833
 MonoBehaviour:
   m_ObjectHideFlags: 0

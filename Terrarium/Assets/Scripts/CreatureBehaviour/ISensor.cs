@@ -40,12 +40,20 @@ namespace Assets.Scripts.CreatureBehaviour
         public abstract List<GameObject> SensePlants(Creature me);
 
         /// <summary>
-        /// Detects all edible plants in your neighborhood
+        /// Detects all carnivores creatures in your neighborhood
         /// </summary>
         /// <param name="me">The sensing creature</param>
         /// <returns>A List of GameObject containing all surrounding .
         /// To access their properties, use <code>gameObject.GetComponent<Creature>()</code></returns>
         public abstract List<GameObject> SenseCarnivores(Creature me);
+
+        /// <summary>
+        /// Detects all carnivores that could eat you in your neighborhood
+        /// </summary>
+        /// <param name="me">The sensing creature</param>
+        /// <returns>A List of GameObject containing all surrounding .
+        /// To access their properties, use <code>gameObject.GetComponent<Creature>()</code></returns>
+        public abstract List<GameObject> SensePredators(Creature me);
 
         public abstract float SensingRadius { get; }
     }
