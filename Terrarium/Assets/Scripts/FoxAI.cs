@@ -257,7 +257,7 @@ namespace Assets.Scripts
 
             Debug.Log(specieName +" "+ nOfSpeciemens + " avgSize=" + avgSize + " avgSensing=" + avgSensing + " avgSpeed=" + avgSpeed + " avgGeneration=" + avgGeneration);
 
-            string[] line = { avgSensing.ToString() + ","+ avgEnergy.ToString() + ","+ avgSize.ToString() + ","+ avgSpeed.ToString() + ","+ avgGeneration.ToString() + ","+ nOfSpeciemens.ToString() + "," };
+            string[] line = {Time.time.ToString() + "," + avgSensing.ToString() + ","+ avgEnergy.ToString() + ","+ avgSize.ToString() + ","+ avgSpeed.ToString() + ","+ avgGeneration.ToString() + ","+ nOfSpeciemens.ToString() + "," };
             string docPath = "/Users/giancarlo/Documents/Terrarium/Terrarium/Assets/Scripts/Logs";
             File.AppendAllLines(Path.Combine(docPath, "OutcomesFoxes.txt"), line);
         }
