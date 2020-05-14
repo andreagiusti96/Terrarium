@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -225,6 +226,10 @@ namespace Assets.Scripts
             avgGeneration = ((float)avgGeneration) / (float)nOfSpeciemens;
 
             Debug.Log(specieName + " " + nOfSpeciemens + " avgSize=" + avgSize + " avgSensing=" + avgSensing + " avgSpeed=" + avgSpeed + " avgGeneration=" + avgGeneration);
+
+            string[] line = { avgSensing.ToString() + "," + avgEnergy.ToString() + "," + avgSize.ToString() + "," + avgSpeed.ToString() + "," + avgGeneration.ToString() + "," + nOfSpeciemens.ToString() + "," };
+            string docPath = "/Users/giancarlo/Documents/Terrarium/Terrarium/Assets/Scripts/Logs";
+            File.AppendAllLines(Path.Combine(docPath, "OutcomesChickens.txt"), line);
         }
     }
 }
