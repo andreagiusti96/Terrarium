@@ -256,19 +256,10 @@ namespace Assets.Scripts
             avgGeneration = ((float)avgGeneration) / (float)nOfSpeciemens;
 
             Debug.Log(specieName +" "+ nOfSpeciemens + " avgSize=" + avgSize + " avgSensing=" + avgSensing + " avgSpeed=" + avgSpeed + " avgGeneration=" + avgGeneration);
-            string[] avgSensingString = { avgSensing.ToString() };
-            string[] avgEnergyString = { avgEnergy.ToString() };
-            string[] avgSizeString = { avgSize.ToString() };
-            string[] avgSpeedString = { avgSpeed.ToString() };
-            string[] avgGenerationString = { avgGeneration.ToString() };
-            string[] nOfSpecimenString = { nOfSpeciemens.ToString() };
-            string docPath = "/Users/giancarlo/Documents/Terrarium/Terrarium/Assets/Scripts/Logs";//Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            File.AppendAllLines(Path.Combine(docPath, "AvgSensingFox.csv"), avgSensingString);
-            File.AppendAllLines(Path.Combine(docPath,  "AvgEnergyFox.csv"), avgEnergyString);
-            File.AppendAllLines(Path.Combine(docPath, "AvgSizeFox.csv"), avgSizeString);
-            File.AppendAllLines(Path.Combine(docPath, "AvgSpeedFox.csv"), avgSpeedString);
-            File.AppendAllLines(Path.Combine(docPath, "AvgGenerationFox.csv"), avgGenerationString);
-            File.AppendAllLines(Path.Combine(docPath, "nOfSpeciesFox.csv"), nOfSpecimenString);
+
+            string[] line = { avgSensing.ToString() + ","+ avgEnergy.ToString() + ","+ avgSize.ToString() + ","+ avgSpeed.ToString() + ","+ avgGeneration.ToString() + ","+ nOfSpeciemens.ToString() + "," };
+            string docPath = "/Users/giancarlo/Documents/Terrarium/Terrarium/Assets/Scripts/Logs";
+            File.AppendAllLines(Path.Combine(docPath, "OutcomesFoxes.txt"), line);
         }
     }
 }
