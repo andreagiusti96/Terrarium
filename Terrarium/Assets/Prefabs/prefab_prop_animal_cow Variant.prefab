@@ -43,10 +43,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialSize: 5
   initialRegime: 1
-  initialMaxEnergy: 2000
+  initialMaxEnergy: 1000
   initialMaxSpeed: 30
   initialSensingRadius: 100
---- !u!114 &258722832168939914
+--- !u!114 &2102009232366847781
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

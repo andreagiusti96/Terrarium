@@ -69,6 +69,7 @@ public class Creature : MonoBehaviour
     /// </summary>
     public int Generation { get; set; }
 
+   
     /// ----- ATTRIBUTES
 
     [SerializeField]

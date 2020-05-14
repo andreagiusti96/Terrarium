@@ -39,6 +39,14 @@ namespace Assets.Scripts.CreatureBehaviour
         /// To access their properties, use <code>gameObject.GetComponent<Creature>()</code></returns>
         public abstract List<GameObject> SensePlants(Creature me);
 
+        /// <summary>
+        /// Detects all edible plants in your neighborhood
+        /// </summary>
+        /// <param name="me">The sensing creature</param>
+        /// <returns>A List of GameObject containing all surrounding .
+        /// To access their properties, use <code>gameObject.GetComponent<Creature>()</code></returns>
+        public abstract List<GameObject> SenseCarnivores(Creature me);
+
         public abstract float SensingRadius { get; }
     }
 }

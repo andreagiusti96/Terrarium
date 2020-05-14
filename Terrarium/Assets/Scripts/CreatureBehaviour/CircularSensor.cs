@@ -45,16 +45,22 @@ namespace Assets.Scripts.CreatureBehaviour
         /// <inheritdoc cref="ISensor.SensePreys(Creature)"/>
         public override List<GameObject> SensePreys(Creature me)
         {
-            var neighbors = SenseCreatures(me);
-            var herbivorePreys = new List<GameObject>();
-            foreach(var neighbor in neighbors)
-            {
-                if (neighbor.GetComponent<Creature>().Size < me.Size * 0.7f)
-                    herbivorePreys.Add(neighbor);
-            }
-            return herbivorePreys;
+            return SenseTag(me, "herbivore");
+            //var neighbors = SenseCreatures(me);
+            //var herbivorePreys = new List<GameObject>();
+            //foreach(var neighbor in neighbors)
+            //{
+            //    if (neighbor.GetComponent<Creature>().Size < me.Size * 0.7f)
+            //        herbivorePreys.Add(neighbor);
+            //}
+            //return herbivorePreys;
         }
 
+        /// <inheritdoc cref="ISensor.SenseCarnivores(Creature)"/>
+        public override List<GameObject> SenseCarnivores(Creature me)
+        {
+            return SenseTag(me, "carnivore");
+        }
 
         private List<GameObject> SenseTag(Creature me, string tag)
         {

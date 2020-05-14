@@ -144,10 +144,10 @@ namespace Assets.Scripts
         {
             //int n = species.Length * nIndividualsPerSpecies;
             int n = nIndividualsPerSpecies;
-
             for (int k = 0; k < species.Length; k++)
             {
-                for (int i = 0; i < nIndividualsPerSpecies; i++)
+                if (k == 2) n = 8;  //less predators than preys
+                for (int i = 0; i < n; i++)
                 {
                     Debug.Log($"Creating species {k} - creature {i}");
                     //float angle = (k * nIndividualsPerSpecies + i) * 360f / n;
@@ -157,6 +157,7 @@ namespace Assets.Scripts
                     Instantiate(species[k], position, new Quaternion(0, angle, 0, 0));
                 }
             }
+
         }
 
         private void DestroyPlants()
