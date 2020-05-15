@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 496279254384100739}
   - component: {fileID: 7551617177343189831}
   - component: {fileID: -6996805412147336196}
-  - component: {fileID: 1773684446619975347}
+  - component: {fileID: 8853108369062385072}
   m_Layer: 0
   m_Name: prefab_prop_animal_fox
   m_TagString: carnivore
@@ -81,7 +81,7 @@ MonoBehaviour:
   initialMaxEnergy: 10000
   initialMaxSpeed: 20
   initialSensingRadius: 100
---- !u!114 &1773684446619975347
+--- !u!114 &8853108369062385072
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,10 +90,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1698060286047908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e48a48ed6c1d149afbe8e25d0b2c23f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 71c2550aebc0e473aad97c7f176acdb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specieName: 
+  specieName: Fox
   specieID: 0
 --- !u!1 &1930758515862692
 GameObject:

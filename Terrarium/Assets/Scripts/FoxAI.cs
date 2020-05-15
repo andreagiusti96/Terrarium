@@ -46,9 +46,6 @@ namespace Assets.Scripts
             rand = new System.Random();
 
             initExplorationMap();
-            //Debug.DrawLine(new Vector3(worldMin, 0, worldMin), new Vector3(worldMax, 0, worldMax), Color.white, 100f);
-            //Debug.DrawLine(cellPosition(0, 0), cellPosition((int)(worldSize / resolution) - 1, 0), Color.blue, 100f);
-            //Debug.DrawLine( cellPosition((int)(worldSize / resolution) - 1, 0), cellPosition((int)(worldSize / resolution) - 1, (int)(worldSize / resolution) - 1), Color.blue, 100f);
         }
 
         public void Update()
@@ -258,8 +255,8 @@ namespace Assets.Scripts
             Debug.Log(specieName +" "+ nOfSpeciemens + " avgSize=" + avgSize + " avgSensing=" + avgSensing + " avgSpeed=" + avgSpeed + " avgGeneration=" + avgGeneration);
 
             string[] line = {Time.time.ToString() + "," + avgSensing.ToString() + ","+ avgEnergy.ToString() + ","+ avgSize.ToString() + ","+ avgSpeed.ToString() + ","+ avgGeneration.ToString() + ","+ nOfSpeciemens.ToString() + "," };
-            string docPath = "/Users/giancarlo/Documents/Terrarium/Terrarium/Assets/Scripts/Logs";
-            File.AppendAllLines(Path.Combine(docPath, "OutcomesFoxes.txt"), line);
+            string docPath = Path.GetFullPath("Assets/Logs/");
+            File.AppendAllLines(Path.Combine(docPath, "OutcomesFox.txt"), line);
         }
     }
 }
