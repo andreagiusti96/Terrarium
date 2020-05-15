@@ -22,7 +22,7 @@ namespace Assets.Scripts
         float worldMax = 600;
         float worldSize;
 
-        float resolution = 10;
+        float resolution = 20;
 
         System.Random rand;
 
@@ -143,8 +143,7 @@ namespace Assets.Scripts
 
         Vector3 unexploredDirection(float explorationRadius)
         {
-            Vector3 dir = new Vector3(rand.Next(-10, 10), 0, rand.Next(-10, 10));
-            dir = dir * 0.0001f * explorationRadius;
+            Vector3 dir = Vector3.zero;
             int max = (int)(worldSize / resolution) - 1;
 
             for (int i = 0; i < max; i++)
@@ -157,6 +156,12 @@ namespace Assets.Scripts
                         dir += exploarationMap[i, j] * rel_pos / rel_pos.sqrMagnitude;
                     }
                 }
+            }
+
+            foreach(GameObject neighbour in creature.Sensor.SenseCreatures(creature))
+            {
+                Vector3 rel_pos = (neighbour.transform.position - transform.position);
+                dir -= rel_pos / rel_pos.sqrMagnitude;
             }
 
             return dir.normalized;

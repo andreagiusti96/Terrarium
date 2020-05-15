@@ -22,7 +22,7 @@ namespace Assets.Scripts
         float worldMax = 600;
         float worldSize;
 
-        float resolution = 10;
+        float resolution = 20;
 
         bool justEaten = false;
         int justEatenCounter = 0;

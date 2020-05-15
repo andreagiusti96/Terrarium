@@ -413,6 +413,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7919224150207797045, guid: 024cec824cfa35944975048d9ddf9829,
         type: 3}
+      propertyPath: nIndividualsPerSpecies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7919224150207797045, guid: 024cec824cfa35944975048d9ddf9829,
+        type: 3}
       propertyPath: species.Array.data[0]
       value: 
       objectReference: {fileID: -2488530326704043567, guid: e50636d1984793440bcb33f98b4abec8,
@@ -432,7 +437,7 @@ PrefabInstance:
         type: 3}
       propertyPath: species.Array.data[1]
       value: 
-      objectReference: {fileID: -8152262030657091210, guid: ac2744242ff384029b8bc7a0a90f5ec4,
+      objectReference: {fileID: 8853108369062385072, guid: ac2744242ff384029b8bc7a0a90f5ec4,
         type: 3}
     - target: {fileID: 7919224150207797045, guid: 024cec824cfa35944975048d9ddf9829,
         type: 3}
@@ -440,5 +445,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8152262030657091210, guid: ac2744242ff384029b8bc7a0a90f5ec4,
         type: 3}
+    - target: {fileID: 7919224150207797045, guid: 024cec824cfa35944975048d9ddf9829,
+        type: 3}
+      propertyPath: nIndividualsPerSpecies.Array.data[0]
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7919224150207797045, guid: 024cec824cfa35944975048d9ddf9829,
+        type: 3}
+      propertyPath: nIndividualsPerSpecies.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 024cec824cfa35944975048d9ddf9829, type: 3}

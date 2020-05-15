@@ -12,9 +12,9 @@ namespace Assets.Scripts
 
         public float edibleRadius;
         public TerrainManager terrainManager;
-        public CreatureAI[] species;
         public GameObject[] spawnAreas;
-        public int nIndividualsPerSpecies;
+        public CreatureAI[] species;
+        public int[] nIndividualsPerSpecies;
 
         // DEBUG
         int nHerbioures;
@@ -147,18 +147,19 @@ namespace Assets.Scripts
         private void SpawnCreatures()
         {
             //int n = species.Length * nIndividualsPerSpecies;
-            int n = nIndividualsPerSpecies;
 
             for (int k = 0; k < species.Length; k++)
             {
+                int n = nIndividualsPerSpecies[k];
                 species[k].specieID = k;
-                if (k == 2) n = 8;  //less predators than preys
+
                 for (int i = 0; i < n; i++)
                 {
                     Debug.Log($"Creating species {k} - creature {i}");
                     //float angle = (k * nIndividualsPerSpecies + i) * 360f / n;
-                    float angle = (nIndividualsPerSpecies + i) * 360f / n;
-                    Vector3 position = spawnAreas[k].transform.position + Quaternion.Euler(0, angle, 0f) * Vector3.forward * 50;
+                    float angle = (n + i) * 360f / n;
+                    //Vector3 position = spawnAreas[k].transform.position + Quaternion.Euler(0, angle, 0f) * Vector3.forward * 50;
+                    Vector3 position = new Vector3(UnityEngine.Random.Range(-200, 600), 5, UnityEngine.Random.Range(-200, 600));
                     position.y = 5f;
                     Instantiate(species[k], position, new Quaternion(0, angle, 0, 0));
                 }
