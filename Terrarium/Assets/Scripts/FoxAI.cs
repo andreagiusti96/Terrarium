@@ -24,8 +24,7 @@ namespace Assets.Scripts
 
         float resolution = 20;
 
-        bool justEaten = false;
-        int justEatenCounter = 0;
+        float timeSinceMeal = 0;
 
         System.Random rand;
 
@@ -53,20 +52,26 @@ namespace Assets.Scripts
             updateExplorationMap();
             Vector3 dir = Vector3.zero;
             float speed = 1;
+            timeSinceMeal += Time.deltaTime;
 
 
             List<GameObject> food = creature.Sensor.SensePreys(creature);
             List<GameObject> friends = creature.Sensor.SenseCarnivores(creature);
             Vector3 ComeHerePos = ComeHere(friends);
 
-            if (food.Count > 0 && creature.Energy < creature.MaxEnergy * 0.8)
+            if (timeSinceMeal < 1 && creature.Energy > creature.MaxEnergy * 0.2)
+            {
+                // take a rest
+                speed = 0;
+            }
+            else if (food.Count > 0 && creature.Energy < creature.MaxEnergy * 0.8)
             {
                 // can see food, go and take it
                 //Debug.Log("Fox has seen food");
                 dir = (getClosest(food).transform.position - transform.position).normalized;
             }
-            else if (ComeHerePos != Vector3.zero)
-			{
+            else if (ComeHerePos != Vector3.zero && creature.Energy < creature.MaxEnergy * 0.8)
+            {
                 //Debug.Log("Following friends");
                 dir = (ComeHerePos - transform.position).normalized;
             }
@@ -76,16 +81,7 @@ namespace Assets.Scripts
                 dir = unexploredDirection(creature.Sensor.SensingRadius * 2);
                 speed = 0.5f;
             }
-            if (justEaten)
-            {
-                speed = 0f;
-                justEatenCounter++;
-            }
-            if (justEatenCounter == 100)
-            {
-                justEaten = false;
-                justEatenCounter = 0;
-            }
+
             creature.Move(dir, speed);
 
             // Debug.Log("dir=" + dir + " speed=" + speed);
@@ -94,8 +90,8 @@ namespace Assets.Scripts
         public override void OnAccessibleFood(GameObject food)
         {
             creature.Eat(food);
-            justEaten = true;
-            if (creature.Energy > 0.2 * creature.MaxEnergy && UnityEngine.Random.Range(0, 1) < 0.2f) creature.Reproduce(); 
+            timeSinceMeal = 0;
+            if (UnityEngine.Random.Range(0, creature.MaxEnergy) < creature.Energy - creature.MaxEnergy * 0.5f) creature.Reproduce();
         }
 
         void initExplorationMap()
@@ -153,8 +149,7 @@ namespace Assets.Scripts
 
         Vector3 unexploredDirection(float explorationRadius)
         {
-            Vector3 dir = new Vector3(rand.Next(-1, 1), 0, rand.Next(-1, 1));
-            dir = dir * 0.1f;
+            Vector3 dir = Vector3.zero;
             int max = (int)(worldSize / resolution) - 1;
 
             for (int i = 0; i < max; i++)
@@ -168,6 +163,14 @@ namespace Assets.Scripts
                     }
                 }
             }
+
+            foreach (GameObject neighbour in creature.Sensor.SenseCreatures(creature))
+            {
+                Vector3 rel_pos = (neighbour.transform.position - transform.position);
+                dir -= rel_pos / rel_pos.sqrMagnitude;
+            }
+
+            if (dir.magnitude == 0) dir = new Vector3(rand.Next(-1, 1), 0, rand.Next(-1, 1));
 
             return dir.normalized;
         }

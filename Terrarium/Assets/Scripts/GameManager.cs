@@ -19,11 +19,7 @@ namespace Assets.Scripts
         // DEBUG
         int nHerbioures;
         int nCarnivore;
-        float avgSize;
-        float avgSpeed;
-        float avgSensing;
-        float avgGeneration;
-        float avgEnergy;
+        float time=0;
 
         public void Awake()
         {
@@ -38,34 +34,22 @@ namespace Assets.Scripts
             nCarnivore = carnivores.Length;
             nHerbioures = herbivores.Length;
 
-            avgSensing = 0;
-            avgSize = 0;
-            avgSpeed = 0;
-            avgGeneration = 0;
-            avgEnergy = 0;
-
             //satisfy the herbivores
             foreach (var animal in herbivores)
             {
                 Creature c = animal.GetComponent<Creature>();
                 List<GameObject> animalFood;
 
-                avgSensing += c.Sensor.SensingRadius;
-                avgSize += c.Size;
-                avgSpeed += c.MaxSpeed;
-                avgGeneration += c.Generation;
-                avgEnergy += c.Energy;
-
                 // Herbivores eat plants
                 animalFood = c.Sensor.SensePlants(c);
 
                 //the closest within the edible radius can be eaten
-                GameObject closestFood=null;
+                GameObject closestFood =null;
                 float distance = float.MaxValue;
                 foreach(var foodPiece in animalFood)
                 {
                     float localDistance = Vector3.Distance(animal.transform.position, foodPiece.transform.position);
-                    if (localDistance<distance && localDistance < edibleRadius)
+                    if (localDistance<distance && localDistance < edibleRadius * Mathf.Sqrt(c.Size))
                     {
                         distance = localDistance;
                         closestFood = foodPiece;
@@ -74,15 +58,9 @@ namespace Assets.Scripts
                 if (closestFood != null)
                 {
                     animal.GetComponent<CreatureAI>().OnAccessibleFood(closestFood);
-                    // Debug.Log($"Calling the eating method !");
+                    //Debug.Log($"Calling the eating method !");
                 }
             }
-
-            avgSensing = avgSensing / (float)nHerbioures;
-            avgEnergy = avgEnergy / (float)nHerbioures;
-            avgSize = avgSize / (float)nHerbioures;
-            avgSpeed = avgSpeed / (float)nHerbioures;
-            avgGeneration = ((float)avgGeneration) / (float)nHerbioures;
 
             //same with carnivores
             foreach (var animal in carnivores)
@@ -113,9 +91,14 @@ namespace Assets.Scripts
                 }
             }
 
-            foreach(CreatureAI specie in species)
+            time += Time.deltaTime;
+            if (time > 1)
             {
-                specie.updateStats();
+                foreach (CreatureAI specie in species)
+                {
+                    specie.updateStats();
+                }
+                time = 0;
             }
         }
 

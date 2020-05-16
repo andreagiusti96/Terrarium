@@ -55,11 +55,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8581c345dce24bcdbcca5cb0d76e590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSize: 1
+  initialSize: 1.5
   initialRegime: 0
-  initialMaxEnergy: 1000
+  initialMaxEnergy: 1500
   initialMaxSpeed: 10
-  initialSensingRadius: 50
+  initialSensingRadius: 20
 --- !u!1001 &4162405483811036731
 PrefabInstance:
   m_ObjectHideFlags: 0

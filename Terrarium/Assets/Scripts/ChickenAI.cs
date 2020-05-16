@@ -80,7 +80,7 @@ namespace Assets.Scripts
         public override void OnAccessibleFood(GameObject food)
         {
             creature.Eat(food);
-            if (UnityEngine.Random.Range(0, creature.MaxEnergy) < creature.Energy) creature.Reproduce();
+            if (UnityEngine.Random.Range(0, creature.MaxEnergy) < creature.Energy - creature.MaxEnergy * 0.1f) creature.Reproduce();
         }
 
         void initExplorationMap()

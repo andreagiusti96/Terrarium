@@ -170,7 +170,7 @@ public class Creature : MonoBehaviour
 
         Energy -= energyCost;
 
-        Debug.Log("new baby size=" + baby.Size + " speed=" + baby.MaxSpeed+ " sensing="+baby.Sensor.SensingRadius + " energy=" + baby.Energy);
+        Debug.Log("new baby size=" + baby.Size + " speed=" + baby.MaxSpeed+ " sensing="+baby.Sensor.SensingRadius + " energy=" + baby.Energy + " parent energy=" + Energy);
     }
 
     Vector3 getClosestFreePoint(Vector3 point)

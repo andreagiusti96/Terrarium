@@ -27,8 +27,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 3, z: 3}
-  m_Center: {x: -0.25, y: 0, z: -0.25}
+  m_Size: {x: 2.0086381, y: 2.2631865, z: 2.9773111}
+  m_Center: {x: -0.14630091, y: 1.0682836, z: -0.23865557}
 --- !u!114 &-3201609771440542968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41,12 +41,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8581c345dce24bcdbcca5cb0d76e590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSize: 5
-  initialRegime: 1
-  initialMaxEnergy: 1000
-  initialMaxSpeed: 30
-  initialSensingRadius: 100
---- !u!114 &2102009232366847781
+  initialSize: 10
+  initialRegime: 0
+  initialMaxEnergy: 10000
+  initialMaxSpeed: 2
+  initialSensingRadius: 40
+--- !u!114 &6069125083036004807
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,11 +55,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6965356826043790352}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70bd1b9f6a3aa4125bad23475df5c2b9, type: 3}
+  m_Script: {fileID: 11500000, guid: a00a83de818744ac484e693a1dbdc9c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   specieName: Cow
-  specieID: 1
+  specieID: 0
 --- !u!1001 &6966341860444957206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1266784798760454, guid: 09aca85bf6d6a3648b9082cc4cd4a912, type: 3}
       propertyPath: m_TagString
-      value: carnivore
+      value: herbivore
       objectReference: {fileID: 0}
     - target: {fileID: 4973431802215156, guid: 09aca85bf6d6a3648b9082cc4cd4a912, type: 3}
       propertyPath: m_LocalPosition.x

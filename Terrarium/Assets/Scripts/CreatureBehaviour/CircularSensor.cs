@@ -68,16 +68,18 @@ namespace Assets.Scripts.CreatureBehaviour
         /// <inheritdoc cref="ISensor.SensePredators(Creature)"/>
         public override List<GameObject> SensePredators(Creature me)
         {
-            //return SenseTag(me, "herbivore");
-            var neighbors = SenseCarnivores(me);
+            List<GameObject> neighbors = SenseCarnivores(me);
+            List<GameObject> predators = new List<GameObject>();
 
-            foreach (var neighbor in neighbors)
+            if (neighbors.Count > 0)
             {
-                if (neighbor.GetComponent<Creature>().Size * 0.7 < me.Size)
-                    neighbors.Remove(neighbor);
+                foreach (GameObject neighbor in neighbors)
+                {
+                    if (neighbor.GetComponent<Creature>().Size * 0.7 > me.Size)
+                        predators.Add(neighbor);
+                }
             }
-
-            return neighbors;
+            return predators;
         }
 
 
