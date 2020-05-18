@@ -62,8 +62,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.99380445, z: 1.0247822}
+  m_Center: {x: 0, y: 0.48635316, z: -0.055760264}
 --- !u!114 &-6996805412147336196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,7 +80,7 @@ MonoBehaviour:
   initialRegime: 1
   initialMaxEnergy: 5000
   initialMaxSpeed: 20
-  initialSensingRadius: 80
+  initialSensingRadius: 70
 --- !u!114 &8853108369062385072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   specieName: Fox
-  specieID: 0
+  specieID: 2
 --- !u!1 &1930758515862692
 GameObject:
   m_ObjectHideFlags: 0

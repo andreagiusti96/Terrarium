@@ -10,7 +10,7 @@ namespace Assets.Scripts.CreatureBehaviour
     {
         System.Random rand = new System.Random();
 
-        float mutationFactor = 0.2f;
+        float mutationFactor = 0f;
 
         public void CreateBaby(Creature parent, ref Creature baby)
         {

@@ -15,21 +15,19 @@ namespace Assets.Scripts
     public class FoxAI : CreatureAI
     {
         private Creature creature;
-       
-        float[,] exploarationMap;
+        float timeSinceMeal = 0;
 
+        // navigation variables
+        float[,] exploarationMap; // range [0,1] 0= just visited, 1= never visited
         float worldMin = -200;
         float worldMax = 600;
         float worldSize;
-
         float resolution = 20;
-
-        float timeSinceMeal = 0;
 
         System.Random rand;
 
+        // Specie's stats (shared by all the speciemen)
         static int nOfSpeciemens;
-
         static float avgSize;
         static float avgSpeed;
         static float avgSensing;
@@ -57,9 +55,15 @@ namespace Assets.Scripts
 
             List<GameObject> food = creature.Sensor.SensePreys(creature);
             List<GameObject> friends = creature.Sensor.SenseCarnivores(creature);
+            List<GameObject> predators = creature.Sensor.SensePredators(creature);
             Vector3 ComeHerePos = ComeHere(friends);
 
-            if (timeSinceMeal < 1 && creature.Energy > creature.MaxEnergy * 0.2)
+            if (predators.Count > 0 && (transform.position - getClosest(predators).transform.position).magnitude<40)
+            {
+                // run away
+                dir = (transform.position - getClosest(predators).transform.position).normalized;
+            }
+            else if (timeSinceMeal < 1 && creature.Energy > creature.MaxEnergy * 0.2)
             {
                 // take a rest
                 speed = 0;
@@ -91,7 +95,7 @@ namespace Assets.Scripts
         {
             creature.Eat(food);
             timeSinceMeal = 0;
-            if (UnityEngine.Random.Range(0, creature.MaxEnergy) < creature.Energy - creature.MaxEnergy * 0.5f) creature.Reproduce();
+            if (UnityEngine.Random.Range(0, creature.MaxEnergy) < creature.Energy - creature.MaxEnergy * 0.6f) creature.Reproduce();
         }
 
         void initExplorationMap()
@@ -211,18 +215,24 @@ namespace Assets.Scripts
             int j = 0;
             for (int i = 0; i < friends.Count; i++)
 			{
-                friendsFood = friends[i].GetComponent<Creature>().Sensor.SensePreys(friends[i].GetComponent<Creature>());
-                if (friendsFood.Count > 0)
-				{
-                    j = i;
-                    found = true;
-                    break;
-				}
+                if (friends[i].GetComponent<CreatureAI>().specieID == specieID)
+                {
+                    friendsFood = friends[i].GetComponent<Creature>().Sensor.SensePreys(friends[i].GetComponent<Creature>());
+                    if (friendsFood.Count > 0)
+                    {
+                        j = i;
+                        found = true;
+                        break;
+                    }
+                }
             }
             if (found) return friends[j].transform.position;
             else return Vector3.zero;
         }
 
+        // inherit from CreatureAI
+        // collects data from all the member of the specie and update specie's stats
+        // stats are logged as csv in a txt file in Assets/Logs folder (you have to create the Logs folder)
         public override void updateStats()
         {
             List<GameObject> agents = GameObject.FindGameObjectsWithTag("carnivore").ToList();

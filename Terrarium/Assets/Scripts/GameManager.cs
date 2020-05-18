@@ -14,7 +14,7 @@ namespace Assets.Scripts
         public TerrainManager terrainManager;
         public GameObject[] spawnAreas;
         public CreatureAI[] species;
-        public int[] nIndividualsPerSpecies;
+        public int[] nIndividualsPerSpecies;    // The starting number of agents for each species (to be set via Unity inspector)
 
         // DEBUG
         int nHerbioures;
@@ -49,7 +49,7 @@ namespace Assets.Scripts
                 foreach(var foodPiece in animalFood)
                 {
                     float localDistance = Vector3.Distance(animal.transform.position, foodPiece.transform.position);
-                    if (localDistance<distance && localDistance < edibleRadius * Mathf.Sqrt(c.Size))
+                    if (localDistance<distance && localDistance < edibleRadius * c.Size)
                     {
                         distance = localDistance;
                         closestFood = foodPiece;
@@ -78,7 +78,7 @@ namespace Assets.Scripts
                 foreach (var foodPiece in animalFood)
                 {
                     float localDistance = Vector3.Distance(animal.transform.position, foodPiece.transform.position);
-                    if (localDistance < distance && localDistance < edibleRadius)
+                    if (localDistance < distance && localDistance < edibleRadius * c.Size)
                     {
                         distance = localDistance;
                         closestFood = foodPiece;
@@ -91,6 +91,8 @@ namespace Assets.Scripts
                 }
             }
 
+
+            // once per second call updateStats on all species
             time += Time.deltaTime;
             if (time > 1)
             {
@@ -134,15 +136,18 @@ namespace Assets.Scripts
             for (int k = 0; k < species.Length; k++)
             {
                 int n = nIndividualsPerSpecies[k];
-                species[k].specieID = k;
+                species[k].specieID = k; // set specieID
 
                 for (int i = 0; i < n; i++)
                 {
                     Debug.Log($"Creating species {k} - creature {i}");
                     //float angle = (k * nIndividualsPerSpecies + i) * 360f / n;
                     float angle = (n + i) * 360f / n;
+
+                    // Random vs Circular spawning
                     //Vector3 position = spawnAreas[k].transform.position + Quaternion.Euler(0, angle, 0f) * Vector3.forward * 50;
                     Vector3 position = new Vector3(UnityEngine.Random.Range(-200, 600), 5, UnityEngine.Random.Range(-200, 600));
+
                     position.y = 5f;
                     Instantiate(species[k], position, new Quaternion(0, angle, 0, 0));
                 }

@@ -16,18 +16,17 @@ namespace Assets.Scripts
     {
         private Creature creature;
 
+        // navigation variables
         float[,] exploarationMap; // range [0,1] 0= just visited, 1= never visited
-
         float worldMin = -200;
         float worldMax = 600;
         float worldSize;
-
         float resolution = 20;
 
         System.Random rand;
 
+        // Specie's stats (shared by all the speciemen)
         static int nOfSpeciemens;
-
         static float avgSize;
         static float avgSpeed;
         static float avgSensing;
@@ -196,6 +195,9 @@ namespace Assets.Scripts
             return closest;
         }
 
+        // inherit from CreatureAI
+        // collects data from all the member of the specie and update specie's stats
+        // stats are logged as csv in a txt file in Assets/Logs folder (you have to create the Logs folder)
         public override void updateStats()
         {
             List<GameObject> agents = GameObject.FindGameObjectsWithTag("carnivore").ToList();

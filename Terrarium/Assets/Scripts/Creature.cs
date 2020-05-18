@@ -64,6 +64,7 @@ public class Creature : MonoBehaviour
     /// </summary>
     public float MaxEnergy { get; set; }
 
+    /// NEW
     /// <summary>
     /// The generation of the creature.
     /// </summary>
@@ -100,10 +101,6 @@ public class Creature : MonoBehaviour
             Size = initialSize;
             Sensor = new CircularSensor(initialSensingRadius);
             Energy = MaxEnergy;
-        }
-        else
-        {
-            // Energy = EnergyManager.ReproductionCost(this);
         }
     }
 

@@ -44,7 +44,7 @@ MonoBehaviour:
   initialSize: 10
   initialRegime: 0
   initialMaxEnergy: 10000
-  initialMaxSpeed: 2
+  initialMaxSpeed: 4
   initialSensingRadius: 40
 --- !u!114 &6069125083036004807
 MonoBehaviour:

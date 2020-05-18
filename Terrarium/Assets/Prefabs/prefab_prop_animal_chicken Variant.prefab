@@ -27,8 +27,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1, z: 0.8}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.46440506, z: 0.35159498}
+  m_Center: {x: 0, y: 0.22420263, z: -0.11210123}
 --- !u!114 &-2488530326704043567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   specieName: Chicken
-  specieID: 0
+  specieID: 3
 --- !u!114 &6965390122154162833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,11 +55,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8581c345dce24bcdbcca5cb0d76e590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSize: 1.5
+  initialSize: 2
   initialRegime: 0
-  initialMaxEnergy: 1500
+  initialMaxEnergy: 2000
   initialMaxSpeed: 10
-  initialSensingRadius: 20
+  initialSensingRadius: 30
 --- !u!1001 &4162405483811036731
 PrefabInstance:
   m_ObjectHideFlags: 0

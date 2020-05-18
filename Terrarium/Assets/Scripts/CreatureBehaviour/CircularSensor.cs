@@ -53,7 +53,7 @@ namespace Assets.Scripts.CreatureBehaviour
             var preys = new List<GameObject>();
             foreach (var neighbor in neighbors)
             {
-                if (neighbor.GetComponent<Creature>().Size < me.Size * 0.7f)
+                if (neighbor.GetComponent<Creature>().Size < me.Size * 0.8f)
                     preys.Add(neighbor);
             }
             return preys;
@@ -75,7 +75,7 @@ namespace Assets.Scripts.CreatureBehaviour
             {
                 foreach (GameObject neighbor in neighbors)
                 {
-                    if (neighbor.GetComponent<Creature>().Size * 0.7 > me.Size)
+                    if (neighbor.GetComponent<Creature>().Size * 0.8 > me.Size)
                         predators.Add(neighbor);
                 }
             }
