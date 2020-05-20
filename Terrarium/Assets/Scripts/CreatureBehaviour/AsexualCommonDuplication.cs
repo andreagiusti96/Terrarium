@@ -19,8 +19,8 @@ namespace Assets.Scripts.CreatureBehaviour
              * As you may, see mutation happens here !
              */
             baby.CreatureRegime = parent.CreatureRegime;
-            baby.Size = parent.Size * ( 1 - mutationFactor/2f + (float)rand.NextDouble() * mutationFactor);
-            baby.MaxSpeed = parent.MaxSpeed * (1 - mutationFactor / 2f + (float)rand.NextDouble() * mutationFactor);
+            baby.Size = parent.Size*( 1 - mutationFactor/2f + (float)rand.NextDouble() * mutationFactor);
+            baby.MaxSpeed = parent.MaxSpeed* (1 - mutationFactor / 2f + (float)rand.NextDouble() * mutationFactor);
             baby.Sensor = new CircularSensor(parent.Sensor.SensingRadius * (1 - mutationFactor / 2f + (float)rand.NextDouble() * mutationFactor));
             baby.MaxEnergy = parent.MaxEnergy;
             baby.Generation = parent.Generation + 1;
