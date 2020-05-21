@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.4964124, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -431,13 +431,13 @@ PrefabInstance:
         type: 3}
       propertyPath: species.Array.data[2]
       value: 
-      objectReference: {fileID: 8853108369062385072, guid: ac2744242ff384029b8bc7a0a90f5ec4,
+      objectReference: {fileID: 8214162506680231276, guid: 28f7b1698e48f844eb15c5b04ea50b07,
         type: 3}
     - target: {fileID: 7919224150207797045, guid: 024cec824cfa35944975048d9ddf9829,
         type: 3}
       propertyPath: species.Array.data[1]
       value: 
-      objectReference: {fileID: 6069125083036004807, guid: 28f7b1698e48f844eb15c5b04ea50b07,
+      objectReference: {fileID: 818182044787617682, guid: 66d2fb54f52074846b55cf3f7ae92651,
         type: 3}
     - target: {fileID: 7919224150207797045, guid: 024cec824cfa35944975048d9ddf9829,
         type: 3}
@@ -448,12 +448,12 @@ PrefabInstance:
     - target: {fileID: 7919224150207797045, guid: 024cec824cfa35944975048d9ddf9829,
         type: 3}
       propertyPath: nIndividualsPerSpecies.Array.data[0]
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7919224150207797045, guid: 024cec824cfa35944975048d9ddf9829,
         type: 3}
       propertyPath: nIndividualsPerSpecies.Array.data[1]
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7919224150207797045, guid: 024cec824cfa35944975048d9ddf9829,
         type: 3}
@@ -463,7 +463,7 @@ PrefabInstance:
     - target: {fileID: 7919224150207797045, guid: 024cec824cfa35944975048d9ddf9829,
         type: 3}
       propertyPath: nIndividualsPerSpecies.Array.data[2]
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7919224150207797045, guid: 024cec824cfa35944975048d9ddf9829,
         type: 3}

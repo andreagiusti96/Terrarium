@@ -30,7 +30,7 @@ namespace Assets.Scripts.CreatureBehaviour
                 return 200 * food.GetComponent<Creature>().Size;
             } else
             {
-                return 200;
+                return 200;//
             }
         }
 
